@@ -1,0 +1,109 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  
+  --color-primary-50: #f0f4f8;
+  --color-primary-100: #d9e2ec;
+  --color-primary-200: #bcccdc;
+  --color-primary-300: #9fb3c8;
+  --color-primary-400: #829ab1;
+  --color-primary-500: #627d98;
+  --color-primary-600: #486581;
+  --color-primary-700: #334e68;
+  --color-primary-800: #243b53;
+  --color-primary-900: #102a43;
+  --color-primary-950: #0a192f;
+}
+
+:root {
+  --background: #f8fafd;
+  --foreground: #1f2937;
+  --card: #ffffff;
+  --card-foreground: #1f2937;
+  --popover: #ffffff;
+  --popover-foreground: #1f2937;
+  --primary: #0b57d0;
+  --primary-foreground: #ffffff;
+  --secondary: #e8def8;
+  --secondary-foreground: #1d192b;
+  --muted: #f3f4f6;
+  --muted-foreground: #4b5563;
+  --accent: #d3e3fd;
+  --accent-foreground: #041e49;
+  --destructive: #b3261e;
+  --destructive-foreground: #ffffff;
+  --border: #e5e7eb;
+  --input: #e5e7eb;
+  --ring: #0b57d0;
+  --radius: 1.5rem;
+}
+
+.dark {
+  --background: #111827;
+  --foreground: #f9fafb;
+  --card: #1f2937;
+  --card-foreground: #f9fafb;
+  --popover: #1f2937;
+  --popover-foreground: #f9fafb;
+  --primary: #a8c7fa;
+  --primary-foreground: #062e6f;
+  --secondary: #4a4458;
+  --secondary-foreground: #e8def8;
+  --muted: #374151;
+  --muted-foreground: #9ca3af;
+  --accent: #004a77;
+  --accent-foreground: #c2e7ff;
+  --destructive: #f2b8b5;
+  --destructive-foreground: #601410;
+  --border: #374151;
+  --input: #374151;
+  --ring: #a8c7fa;
+}
+
+@layer base {
+  * {
+    border-color: var(--border);
+  }
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+/* Modern Card Effect */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.dark .glass-panel {
+  background: rgba(30, 41, 59, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Global Dark Mode Hacks for statically styled components */
+.dark .bg-white { background-color: var(--card) !important; color: var(--card-foreground); }
+.dark .bg-slate-50 { background-color: var(--background) !important; color: var(--foreground); }
+.dark .bg-slate-100 { background-color: var(--secondary) !important; }
+.dark .text-slate-900 { color: var(--foreground) !important; }
+.dark .text-slate-800 { color: #e2e8f0 !important; }
+.dark .text-slate-600 { color: #cbd5e1 !important; }
+.dark .text-slate-500 { color: var(--muted-foreground) !important; }
+.dark .border-slate-200 { border-color: var(--border) !important; }
+.dark .border-slate-100 { border-color: var(--border) !important; }
+.dark .border-b, .dark .border-t, .dark .border-l, .dark .border-r { border-color: var(--border) !important; }
+.dark .divide-slate-100 > :not([hidden]) ~ :not([hidden]) { border-color: var(--border) !important; }
+
+/* Keep specific colorful buttons/badges intact but adjust text if needed */
+.dark .bg-indigo-600 { background-color: var(--primary) !important; }
+.dark .text-indigo-600 { color: #818cf8 !important; }
+.dark input { background-color: var(--input) !important; color: var(--foreground) !important; border-color: var(--border) !important; }
+.dark select { background-color: var(--input) !important; color: var(--foreground) !important; }
