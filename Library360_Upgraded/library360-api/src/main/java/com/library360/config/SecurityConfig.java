@@ -98,7 +98,7 @@ public class SecurityConfig {
         var cfg = new CorsConfiguration();
         cfg.setAllowedOrigins(origins);
         cfg.setAllowedMethods(List.of("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"));
-        cfg.setAllowedHeaders(List.of("Authorization", "Content-Type", "X-Request-Id"));
+        cfg.setAllowedHeaders(List.of("*"));
         cfg.setExposedHeaders(List.of(HttpHeaders.SET_COOKIE));
         cfg.setAllowCredentials(true);
         var source = new UrlBasedCorsConfigurationSource();

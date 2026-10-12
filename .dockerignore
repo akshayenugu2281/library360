@@ -1,0 +1,9 @@
+Library360_Upgraded/library360-api/target/
+Library360_Upgraded/library360-ui/node_modules/
+Library360_Upgraded/library360-ui/dist/
+.git/
+.github/
+*.log
+*.zip
+.env
+.env.local

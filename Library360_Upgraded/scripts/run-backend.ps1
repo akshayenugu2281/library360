@@ -1,10 +1,13 @@
 $ErrorActionPreference = 'Stop'
 $ProjectRoot = Split-Path -Parent $PSScriptRoot
-$EnvFile = Join-Path $ProjectRoot '.env'
 $ApiDir = Join-Path $ProjectRoot 'library360-api'
+$EnvFile = Join-Path $ApiDir '.env'
+if (-not (Test-Path $EnvFile)) {
+  $EnvFile = Join-Path $ProjectRoot '.env'
+}
 
 if (-not (Test-Path $EnvFile)) {
-  throw "Missing $EnvFile. Copy .env.example to .env and replace all placeholders first."
+  throw "Missing .env file in $ApiDir or $ProjectRoot. Copy .env.example to .env and replace all placeholders first."
 }
 
 Get-Content $EnvFile | ForEach-Object {

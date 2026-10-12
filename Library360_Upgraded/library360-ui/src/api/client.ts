@@ -1,4 +1,5 @@
-const API_BASE = (import.meta.env.VITE_API_BASE_URL || "/api/v1").replace(/\/$/, "");
+const rawApiBase = (import.meta.env.VITE_API_BASE_URL || "/api/v1").trim().replace(/\/$/, "");
+const API_BASE = rawApiBase.endsWith("/api/v1") ? rawApiBase : `${rawApiBase}/api/v1`;
 
 
 export interface SignupFieldRule {

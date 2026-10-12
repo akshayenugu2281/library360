@@ -1,0 +1,41 @@
+services:
+  - type: web
+    name: library360-api
+    runtime: docker
+    dockerfilePath: Dockerfile
+    plan: free
+    region: oregon
+    healthCheckPath: /actuator/health
+    envVars:
+      - key: DB_HOST
+        sync: false
+      - key: DB_PORT
+        sync: false
+      - key: DB_NAME
+        sync: false
+      - key: DB_USER
+        sync: false
+      - key: DB_PASSWORD
+        sync: false
+      - key: DB_SSL
+        value: "true"
+      - key: CORS_ORIGINS
+        value: "https://library360-library360upgraded.vercel.app,http://localhost:5173"
+      - key: COOKIE_SECURE
+        value: "true"
+      - key: COOKIE_SAME_SITE
+        value: "None"
+      - key: JWT_SECRET
+        generateValue: true
+      - key: APP_SETTINGS_ENCRYPTION_KEY
+        generateValue: true
+      - key: ADMIN_EMAIL
+        value: "admin@library360.local"
+      - key: ADMIN_PASSWORD
+        sync: false
+      - key: LIBRARIAN_EMAIL
+        value: "librarian@library360.local"
+      - key: LIBRARIAN_PASSWORD
+        sync: false
+      - key: APP_AI_DEFAULT_MODEL
+        value: "openai/gpt-4o-mini"

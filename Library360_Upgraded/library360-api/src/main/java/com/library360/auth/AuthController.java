@@ -54,6 +54,9 @@ public class AuthController {
     @Value("${app.auth.refresh-cookie-secure:true}")
     private boolean secureCookie;
 
+    @Value("${app.auth.refresh-cookie-same-site:}")
+    private String cookieSameSite;
+
     @PostMapping("/login")
     public ResponseEntity<TokenResponse> login(
             @Valid @RequestBody LoginRequest req,
@@ -225,10 +228,13 @@ public class AuthController {
     }
 
     private String cookie(String value, Duration maxAge) {
+        String sameSite = (cookieSameSite != null && !cookieSameSite.isBlank())
+            ? cookieSameSite
+            : (secureCookie ? "None" : "Lax");
         return ResponseCookie.from(COOKIE_NAME, value)
             .httpOnly(true)
             .secure(secureCookie)
-            .sameSite("Strict")
+            .sameSite(sameSite)
             .path("/api/v1/auth")
             .maxAge(maxAge)
             .build()
